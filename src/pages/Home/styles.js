@@ -45,7 +45,7 @@ export const Content = styled.div`
          background-color: ${({ theme }) => theme.COLORS.PINK};
       }
    
-   > div {
+   > button {
       margin-bottom: 24px;
    }
 `;

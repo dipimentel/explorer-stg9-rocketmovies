@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.button`
    width: 100%;
 
    display: flex;
@@ -10,6 +10,9 @@ export const Container = styled.div`
    border-radius: 16px;
 
    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_PINK};
+
+   border: none;
+   
 
    > h2 {
       font-size: 24px;

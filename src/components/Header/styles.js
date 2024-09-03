@@ -35,12 +35,17 @@ export const Profile = styled.div`
    > div {
       display: flex;
       flex-direction: column;
+      align-items: end;
       text-align: right;
       font-size: 14px;
       color: ${({ theme }) => theme.COLORS.WHITE};
 
-      a {
+      button {
          color: ${({ theme }) => theme.COLORS.GRAY};
+         background: none;
+         border: none;
+         text-align: right;
+         font-size: 14px;
       }
    }
 

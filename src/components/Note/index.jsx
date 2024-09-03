@@ -1,16 +1,21 @@
 import { Container } from "./styles";
+import { Link } from "react-router-dom";
 
 import { Rating } from '../Rating';
 import { Tag } from '../Tag';
 
-export function Note({ noteData, children }) {
+export function Note({ noteData, ...rest }) {
+
+   const previousDescription = noteData.description.slice(0, 200);
+   const isBiggerThanPrevious = noteData.description.length > 200
+
    return(
-      <Container>
+      <Container {...rest}>
          <h2>{ noteData.title }</h2>
          <Rating rating={ noteData.rating } small />
          <p>
-            { children }
-            ...
+            { previousDescription.trim() }
+            { isBiggerThanPrevious ? "..." : "" }
          </p>
          <footer>
             {

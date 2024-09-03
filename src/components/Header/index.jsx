@@ -1,27 +1,52 @@
 import { Container, Logo, Profile } from "./styles";
 
+import { forwardRef } from "react";
+
+import { useNavigate } from "react-router-dom";
+
+import { api } from "../../services/api";
 import { Link } from "react-router-dom";
 
+import { useAuth } from "../../hooks/auth";
 import { Input } from '../Input';
 
-export function Header() {
+
+export function Header({ refInput, ...rest}) {
+
+   const { signOut, user, setSearch, searchData } = useAuth();
+   const navigate = useNavigate();
+
+   function handleSearch(e) {
+      setSearch(e.target.value);
+      navigate("/");
+   }
+
    return(
       <Container>
          <Logo>
             RocketMovies
          </Logo>
 
-         <Input type="text" placeholder="Pesquisar pelo título" width="630px" />
+         <Input
+            type="search"
+            ref={refInput}
+            placeholder="Pesquisar pelo título"
+            width="630px"
+            value={searchData}
+            onChange={e => handleSearch(e)}
+         />
 
          <Profile>
             <div>
-               <strong>Diego Pimentel</strong>
-               <a href="#">sair</a>
+               <strong>{user.name}</strong>
+               <button onClick={signOut}>
+                  sair
+               </button>
             </div>
             <Link to="/profile">
-               <img src="https://github.com/dipimentel.png" alt="Foto do usuário" />
+               <img src={`${api.defaults.baseURL}/files/${user.avatar}`} alt={user.name} />
             </Link>
          </Profile>
       </Container>
    );
-}
+};
